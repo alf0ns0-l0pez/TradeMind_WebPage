@@ -1,0 +1,16 @@
+#status_bar{
+    max-width: 1200px;
+    background-color: var(--color_background_chart);
+    margin: 20px auto 10px;
+    border-radius: 10px;
+    display: flex;
+}
+#status_bar>ul{
+    display: block;
+    padding: 10px;
+    list-style: none;
+}
+#status_bar>ul>li{
+    float: left;
+    padding: 10px;
+}

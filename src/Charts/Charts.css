@@ -1,0 +1,30 @@
+#defaul_chart{
+    border-radius: 10px;
+    text-decoration: none;
+    margin: 20px auto;
+    max-width: 1200px;
+    background-color: var(--color_background_chart);
+}
+#defaul_chart>section{
+    padding: 20px 20px 0px;
+}
+#defaul_chart>section>ul{
+    display: block;
+    list-style: none;
+    
+}
+#defaul_chart>section>ul>li{
+    float:left;
+    padding-right: 5px;
+}
+.chart_box{
+    padding: 20px ;
+}
+.chart_box_in1{
+    border: 3px solid rgb(0, 189, 164);
+    background-color: black;
+    border-radius: 10px;
+}
+.chart_box_in2{
+    margin: 5px ;
+}

@@ -1,0 +1,27 @@
+:root {
+  /*Colors*/
+  --color_background_body: #22262b;
+  --color_background_chart: #0d0f11;
+  --color_background_navbar: #0d0f11;
+  --color_navbar_push: #0d0f11;
+  --color_navbar_push_hover: #0d0f11;
+  --color_main_font: white;
+
+}
+
+body {
+  font-family: 'Open Sans', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;
+  background-color: var(--color_background_body);
+  color:var(--color_main_font);
+  min-height: 100vh;
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+a{
+  font-size: 16px;
+}
+.clearfix{
+  clear:both;
+}

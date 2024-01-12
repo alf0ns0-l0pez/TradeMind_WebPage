@@ -1,0 +1,8 @@
+#footer_bar {
+    line-height: 2;
+    background-color: var(--color_background_navbar);
+    text-align: center;
+    height: 30px;
+    font-style: italic;
+    width: 100%;
+}

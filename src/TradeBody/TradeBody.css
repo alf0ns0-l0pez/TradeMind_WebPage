@@ -1,0 +1,16 @@
+#about_bar{
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: var(--color_background_navbar);
+    border-radius: 10px;
+}
+#about_bar>h3{
+    padding: 10px 20px 0px;
+}
+#about_bar>p{
+    padding: 3px 20px 15px;
+}
+.article{
+    padding: 0px 10px ;
+    min-height: 100vh;
+}

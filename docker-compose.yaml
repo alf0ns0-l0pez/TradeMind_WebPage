@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  trademind_page:
+    image: trademind_page:minerpunk
+    container_name: Trademind_Page
+    ports:
+      - 80:3000
+    #volumes:
+    #  - ./src:/app/src
+    #command: npm start
+    command: serve -s build
+    restart: unless-stopped
+    tty: true
