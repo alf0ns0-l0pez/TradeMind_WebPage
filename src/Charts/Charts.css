@@ -26,5 +26,9 @@
     border-radius: 10px;
 }
 .chart_box_in2{
-    margin: 5px ;
+    margin: 5px;
+}
+.chart_box_calendar{
+    max-width: 1100px;
+    margin: 5px auto;
 }

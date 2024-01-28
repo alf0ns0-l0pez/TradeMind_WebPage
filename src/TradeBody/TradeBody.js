@@ -3,6 +3,7 @@ import "./TradeBody.css";
 import { Option1LineDefault, OptionLineColorEdit, ColorStatusFearGeed } from "../Utils/Constants";
 import TwoLineChart from '../Charts/TwoLineChart';
 import StatusBar from "../StatusBar/StatusBar";
+import CalendarChart from "../Charts/CalendarChart";
 import io from "socket.io-client";
 
 const socket = io.connect("85.31.225.160:2020");
@@ -16,8 +17,8 @@ export default function TradeBody() {
     const [last_fearandgreed_value, setLast_fearandgreed_value] = useState(0);
     /*const [last_bitcoin_volume_24h, setLast_bitcoin_volume_24h] = useState(0);*/
     const [last_bitcoin_price, setLast_bitcoin_price] = useState(0);
+    const [heatCalendar, setHeatCalendar] = useState([]);
     
-
     function createRow(year, month, day, hour, value) {
         return {
             time: new Date(
@@ -38,6 +39,11 @@ export default function TradeBody() {
         /*setLast_bitcoin_volume_24h(data[data.length - 1].bitcoin_volume_24h);*/
         setLast_bitcoin_price(data[data.length - 1].bitcoin_price);
         setLast_fearandgreed_value(data[data.length - 1].fearandgreed_value);
+        const calendarData = data.map((row) => [new Date(row.dt_year, row.dt_month - 1, row.dt_day), row.fearandgreed_value]);
+        setHeatCalendar([[
+            { type: "date", id: "Date" },
+            { type: "number", id: "Value" },
+        ] , ...calendarData]);
     }
     console.log(last_fearandgreed_class)
     useEffect(() => {
@@ -77,6 +83,7 @@ export default function TradeBody() {
                 Axis2={bitcoin_volume_24h}
                 Options1={Option1LineDefault}
                 Options2={OptionLineColorEdit('#ff00f4', "Volumn 24h")}/>
+            <CalendarChart data={heatCalendar}/>
         </div>
     );
 }
