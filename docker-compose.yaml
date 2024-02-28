@@ -5,9 +5,9 @@ services:
     container_name: Trademind_Page
     ports:
       - 80:3000
-    #volumes:
-    #  - ./src:/app/src
-    #command: npm start
-    command: serve -s build
+    volumes:
+      - ./src:/app/src
+    command: npm start
+    #command: serve -s build
     restart: unless-stopped
     tty: true
