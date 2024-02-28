@@ -4,11 +4,11 @@ import './Charts.css'
 
 
 
-export function options(cell_size, day_size, year_size, month_size, mobile) {
+function options(cell_size, day_size, year_size, month_size, mobile, minAndMax) {
     return {
         colorAxis: {
-            minValue: 0,
-            maxValue: 100,
+            minValue: minAndMax["min"],
+            maxValue: minAndMax["max"],
             colors: ['#ff0000', '#00ff00']
         },
         noDataPattern: {
@@ -52,6 +52,15 @@ export function options(cell_size, day_size, year_size, month_size, mobile) {
     }
 };
 
+function maxAndMinValue(data){
+    const dataWithoutColumns = data.slice(1,data.length - 1);
+    const onlyValues = dataWithoutColumns.map((row)=>row[1]);
+    return {
+        "max":Math.max.apply(null,onlyValues),
+        "min":Math.min.apply(null,onlyValues)
+    }
+}
+
 export default function CalendarChart(props) {
     const {data} = props;
     const [width, setWidth] = useState(window.innerWidth);
@@ -68,6 +77,7 @@ export default function CalendarChart(props) {
 
     const isMobile = width <= 768;
 
+
     return (
         <div id='defaul_chart'>
             <section>
@@ -81,7 +91,11 @@ export default function CalendarChart(props) {
                             width="100%"
                             height={!isMobile?"370px":"140px"}
                             data={data}
-                            options={!isMobile?options(18, 16, 40, 14, false):options(5, 8, 15, 8, true)}
+                            options={!isMobile?
+                                options(18, 16, 40, 14, false,
+                                    maxAndMinValue(data)):
+                                options(5, 8, 15, 8, true,
+                                    maxAndMinValue(data))}
                         />
                     </div>
 

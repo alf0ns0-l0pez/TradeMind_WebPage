@@ -4,6 +4,7 @@ import { Option1LineDefault, OptionLineColorEdit, ColorStatusFearGeed } from "..
 import TwoLineChart from '../Charts/TwoLineChart';
 import StatusBar from "../StatusBar/StatusBar";
 import CalendarChart from "../Charts/CalendarChart";
+import DataSource from "./DataSource";
 import io from "socket.io-client";
 
 const socket = io.connect("85.31.225.160:2020");
@@ -64,10 +65,22 @@ export default function TradeBody() {
                 rowNo={bitcoin_price.length}/>
             <article id="about_bar">
                 <h3>
-                    About
+                    About Bitcoin Halving
                 </h3>
                 <p>
-                In this page any enthusiast of Crypto Trading be able to visualize stats which count with axies such as price in dollars, market cap, volume 24h, fear and greed value, fear and greed classification relating between them. 
+                The halving event is automatically triggered by the Bitcoin network once 210,000 blocks have been 
+                mined since the last halving. This count is embedded within the Bitcoin protocol and can not be 
+                changed without forking the Bitcoin blockchain and creating a new cryptocurrency. 
+                <br/>
+                The next Bitcoin halving is expected on April 20, 2024 after block 740,000 has been mined. It will 
+                reduce the block reward from 6.25 BTC to 3.125 BTC.
+                <br/>
+                Bitcoin halving directly impacts its supply by reducing the rate at which new coins are generated, 
+                creating a scarcity effect. This scarcity can lead to increased demand if Bitcoin's adoption and 
+                investor interest continue to grow. 
+                <br/>
+                In this page any enthusiast of Crypto Trading be able to visualize stats which count with axies 
+                such as price in dollars, market cap, volume 24h, fear and greed value, fear and greed classification relating between them. 
                 </p>
             </article>
             <TwoLineChart
@@ -84,6 +97,7 @@ export default function TradeBody() {
                 Options1={Option1LineDefault}
                 Options2={OptionLineColorEdit('#ff00f4', "Volumn 24h")}/>
             <CalendarChart data={heatCalendar}/>
+            <DataSource/>
         </div>
     );
 }
