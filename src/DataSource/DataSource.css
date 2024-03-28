@@ -1,0 +1,26 @@
+#datasource{
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: var(--color_background_navbar);
+    border-radius: 10px;
+}
+#datasource>h3{
+    padding: 20px 20px 10px;
+}
+#datasource>p,
+#datasource>section{
+    padding: 3px 20px 15px;
+}
+#datasource>ul{
+    padding: 3px 0px 15px 40px;
+}
+#datasource>section>img{
+    border-radius: 20px;
+    margin-right: 10px;
+}
+#datasource>p>a{
+    color: rgb(0, 0, 0);
+    background-color: rgb(253, 255, 107);
+    border-radius: 5px;
+    font-weight: bold;
+}

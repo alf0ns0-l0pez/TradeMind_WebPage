@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import "./TradeBody.css";
 import { Option1LineDefault, OptionLineColorEdit, ColorStatusFearGeed } from "../Utils/Constants";
 import TwoLineChart from '../Charts/TwoLineChart';
 import StatusBar from "../StatusBar/StatusBar";
 import CalendarChart from "../Charts/CalendarChart";
-import DataSource from "./DataSource";
+import DataSource from "../DataSource/DataSource";
+import About from "../About/About"
 import io from "socket.io-client";
 
 const socket = io.connect("85.31.225.160:2020");
@@ -46,7 +46,6 @@ export default function TradeBody() {
             { type: "number", id: "Value" },
         ] , ...calendarData]);
     }
-    console.log(last_fearandgreed_class)
     useEffect(() => {
         socket.on("receive_new_sampler", (data) => {
             updateAllCharts(data);
@@ -63,40 +62,33 @@ export default function TradeBody() {
                 fearGreedValue={last_fearandgreed_value} 
                 fearGreedClass={last_fearandgreed_class}
                 rowNo={bitcoin_price.length}/>
-            <article id="about_bar">
-                <h3>
-                    About Bitcoin Halving
-                </h3>
-                <p>
-                The halving event is automatically triggered by the Bitcoin network once 210,000 blocks have been 
-                mined since the last halving. This count is embedded within the Bitcoin protocol and can not be 
-                changed without forking the Bitcoin blockchain and creating a new cryptocurrency. 
-                <br/>
-                The next Bitcoin halving is expected on April 20, 2024 after block 740,000 has been mined. It will 
-                reduce the block reward from 6.25 BTC to 3.125 BTC.
-                <br/>
-                Bitcoin halving directly impacts its supply by reducing the rate at which new coins are generated, 
-                creating a scarcity effect. This scarcity can lead to increased demand if Bitcoin's adoption and 
-                investor interest continue to grow. 
-                <br/>
-                In this page any enthusiast of Crypto Trading be able to visualize stats which count with axies 
-                such as price in dollars, market cap, volume 24h, fear and greed value, fear and greed classification relating between them. 
-                </p>
-            </article>
+            <About/>
+            <CalendarChart 
+                Title="📅 Heatcalendar - Fear and Gread Index."
+                Msg="This graph is the most important, since it shown the market 
+                    emotion representing in a calendar where 🔴 is the minor value 
+                    and 🟢 is the the major value 🌡️."
+                data={heatCalendar}/>
             <TwoLineChart
-                Title="Dollar Bitcoin Price VS Fear and Geed Index."
+                Title="📈Dollar Bitcoin Price & Fear and Geed Index."
+                Msg="The relation between price and emotion, it show recommendations 
+                    of sell and buy by color, preferably for a Swing Trading strategy."
                 Axis1={bitcoin_price}
                 Axis2={fearandgreed_value}
                 Options1={Option1LineDefault}
-                Options2={OptionLineColorEdit(ColorStatusFearGeed[last_fearandgreed_class], last_fearandgreed_class)} />
+                Options2={OptionLineColorEdit(
+                    ColorStatusFearGeed[last_fearandgreed_class], 
+                    last_fearandgreed_class)} />
 
             <TwoLineChart
-                Title="Dollar Bitcoin Price and Bitcoin Volumn 24H."
+                Title="📈Dollar Bitcoin Price & Bitcoin Volume 24H."
+                Msg="Volume is a key point of data for any trader, since it represent the 
+                    amount of buying and selling of an asset that takes place over 
+                    a 24-hour period."
                 Axis1={bitcoin_price}
                 Axis2={bitcoin_volume_24h}
                 Options1={Option1LineDefault}
-                Options2={OptionLineColorEdit('#ff00f4', "Volumn 24h")}/>
-            <CalendarChart data={heatCalendar}/>
+                Options2={OptionLineColorEdit('#ff00f4', "Volume 24h")}/>
             <DataSource/>
         </div>
     );

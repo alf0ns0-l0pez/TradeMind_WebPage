@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 import './Charts.css'
-
-
 
 function options(cell_size, day_size, year_size, month_size, mobile, minAndMax) {
     return {
@@ -41,28 +41,28 @@ function options(cell_size, day_size, year_size, month_size, mobile, minAndMax) 
             },
             monthOutlineColor: {
                 stroke: '#ff00f4',
-                strokeWidth: mobile?2:5
+                strokeWidth: mobile ? 2 : 5
             },
             unusedMonthOutlineColor: {
                 stroke: '#00c1ff',
-                strokeWidth: mobile?1:3
+                strokeWidth: mobile ? 1 : 3
             },
             cellSize: cell_size
         }
     }
 };
 
-function maxAndMinValue(data){
-    const dataWithoutColumns = data.slice(1,data.length - 1);
-    const onlyValues = dataWithoutColumns.map((row)=>row[1]);
+function maxAndMinValue(data) {
+    const dataWithoutColumns = data.slice(1, data.length - 1);
+    const onlyValues = dataWithoutColumns.map((row) => row[1]);
     return {
-        "max":Math.max.apply(null,onlyValues),
-        "min":Math.min.apply(null,onlyValues)
+        "max": Math.max.apply(null, onlyValues),
+        "min": Math.min.apply(null, onlyValues)
     }
 }
 
 export default function CalendarChart(props) {
-    const {data} = props;
+    const { Title,Msg,data } = props;
     const [width, setWidth] = useState(window.innerWidth);
 
     function handleWindowSizeChange() {
@@ -77,27 +77,34 @@ export default function CalendarChart(props) {
 
     const isMobile = width <= 768;
 
-
     return (
         <div id='defaul_chart'>
             <section>
-                <h1>Heatcalendar - Fear and Gread Index</h1>
+                <h1>{Title}</h1>
+                <p>{Msg}</p>
             </section>
             <div className='chart_box'>
                 <div className='chart_box_in1'>
-                    <div className='chart_box_calendar'>
-                        <Chart
-                            chartType="Calendar"
-                            width="100%"
-                            height={!isMobile?"370px":"140px"}
-                            data={data}
-                            options={!isMobile?
-                                options(18, 16, 40, 14, false,
-                                    maxAndMinValue(data)):
-                                options(5, 8, 15, 8, true,
-                                    maxAndMinValue(data))}
-                        />
-                    </div>
+                    {
+                        !data.length ?
+                            <Box sx={{ padding: '10px 10px' }}>
+                                <LinearProgress />
+                            </Box> :
+                            <div className='chart_box_calendar'>
+                                <Chart
+                                    chartType="Calendar"
+                                    width="100%"
+                                    height={!isMobile ? "370px" : "140px"}
+                                    data={data}
+                                    options={!isMobile ?
+                                        options(18, 16, 40, 14, false,
+                                            maxAndMinValue(data)) :
+                                        options(5, 8, 15, 8, true,
+                                            maxAndMinValue(data))}
+                                />
+                            </div>
+
+                    }
 
                 </div>
 

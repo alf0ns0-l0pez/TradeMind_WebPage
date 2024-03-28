@@ -12,7 +12,6 @@ import Chip from '@mui/material/Chip';
 
 export default function StatusBar(props) {
 	const { bitcoinPrice, fearGreedValue, fearGreedClass, rowNo } = props;
-	console.log(fearGreedClass)
 	return (
 		<div id="status_bar">
 			<ul >

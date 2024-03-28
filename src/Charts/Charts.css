@@ -8,14 +8,8 @@
 #defaul_chart>section{
     padding: 20px 20px 0px;
 }
-#defaul_chart>section>ul{
-    display: block;
-    list-style: none;
-    
-}
-#defaul_chart>section>ul>li{
-    float:left;
-    padding-right: 5px;
+#defaul_chart>section>p{
+    padding-top: 20px;
 }
 .chart_box{
     padding: 20px ;

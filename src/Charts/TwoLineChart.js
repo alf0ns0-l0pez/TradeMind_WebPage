@@ -2,6 +2,8 @@
 import './Charts.css'
 import { createChart, ColorType } from 'lightweight-charts';
 import React, { useEffect, useRef } from 'react';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 
 
 export const ChartComponent = props => {
@@ -48,18 +50,20 @@ export const ChartComponent = props => {
 
 
 export default function MarketCapVsFearGreed(props) {
-	const { Title, Axis1, Axis2, Options1, Options2 } = props;
+	const { Title, Msg, Axis1, Axis2, Options1, Options2 } = props;
 	return (
 		<div id='defaul_chart'>
 			<section>
 				<h1>{Title}</h1>
-
+				<p>{Msg}</p>
 			</section>
 			<div className='chart_box'>
 			<div className='chart_box_in1'>
 			{
 					!Axis1.length && !Axis2.length ?
-						null :
+					<Box sx={{ padding: '10px 10px' }}>
+					<LinearProgress />
+				</Box> :
 						<ChartComponent axis1={Axis1} axis2={Axis2} Options1={Options1} Options2={Options2} ></ChartComponent>
 				}
 			</div>
