@@ -56,7 +56,7 @@ export default function TradeBody() {
     }, [socket]);
     return (
         
-        <div className="article">
+        <div style={{padding: '0px 10px'}}>
             <StatusBar 
                 bitcoinPrice={last_bitcoin_price} 
                 fearGreedValue={last_fearandgreed_value} 
@@ -65,13 +65,13 @@ export default function TradeBody() {
             <About/>
             <CalendarChart 
                 Title="📅 Heatcalendar - Fear and Gread Index."
-                Msg="This graph is the most important, since it shown the market 
+                Msg="This graph is the most important, since it shows the market 
                     emotion representing in a calendar where 🔴 is the minor value 
                     and 🟢 is the the major value 🌡️."
                 data={heatCalendar}/>
             <TwoLineChart
                 Title="📈Dollar Bitcoin Price & Fear and Geed Index."
-                Msg="The relation between price and emotion, it show recommendations 
+                Msg="The relation between price and emotion, it shows recommendations 
                     of sell and buy by color, preferably for a Swing Trading strategy."
                 Axis1={bitcoin_price}
                 Axis2={fearandgreed_value}
@@ -82,7 +82,7 @@ export default function TradeBody() {
 
             <TwoLineChart
                 Title="📈Dollar Bitcoin Price & Bitcoin Volume 24H."
-                Msg="Volume is a key point of data for any trader, since it represent the 
+                Msg="Volume is a key point of data for any trader, since it represents the 
                     amount of buying and selling of an asset that takes place over 
                     a 24-hour period."
                 Axis1={bitcoin_price}
